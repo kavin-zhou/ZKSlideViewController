@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ZKProfileViewController.h
 //  ZKSlideViewController
 //
 //  Created by ZK on 2017/4/9.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ZKProfileViewController : UIViewController
 
 @end
-
