@@ -74,11 +74,20 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
 }
 
 - (void)selectBtn:(UIButton *)btn {
+    _selectedBtn.transform = CGAffineTransformIdentity;
+    
     [_selectedBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    _selectedBtn = btn;
     
     [self centerTitleBtn:btn];
+    [self setTitleBtnScale:btn];
+    _selectedBtn = btn;
+}
+
+- (void)setTitleBtnScale:(UIButton *)btn {
+    [UIView animateWithDuration:.18 delay:0 options:KeyboardAnimationCurve animations:^{
+        btn.transform = CGAffineTransformMakeScale(1.2, 1.2);
+    } completion:nil];
 }
 
 - (void)centerTitleBtn:(UIButton *)btn {
@@ -175,6 +184,29 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
     
     [self selectBtn:titleBtn];
     [self setupSelectedViewController:index];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    NSInteger leftIndex = scrollView.contentOffset.x / SCREEN_WIDTH;
+    NSInteger rightIndex = leftIndex + 1;
+    
+    UIButton *leftBtn = _titleBtns[leftIndex];
+    UIButton *rightBtn = nil;
+    if (rightIndex < _titleBtns.count) {
+        rightBtn = _titleBtns[rightIndex];
+    }
+    CGFloat rightScale = scrollView.contentOffset.x / SCREEN_WIDTH;
+    rightScale -= leftIndex;
+    
+    CGFloat leftScale = 1 - rightScale;
+    
+    leftBtn.transform = CGAffineTransformMakeScale(leftScale * .2 + 1, leftScale * .2 + 1);
+    rightBtn.transform = CGAffineTransformMakeScale(rightScale * .2 + 1, rightScale * .2 + 1);
+    
+    UIColor *rightColor = [UIColor colorWithRed:rightScale green:0 blue:0 alpha:1];
+    UIColor *leftColor = [UIColor colorWithRed:leftScale green:0 blue:0 alpha:1];
+    [rightBtn setTitleColor:rightColor forState:UIControlStateNormal];
+    [leftBtn setTitleColor:leftColor forState:UIControlStateNormal];
 }
 
 @end
