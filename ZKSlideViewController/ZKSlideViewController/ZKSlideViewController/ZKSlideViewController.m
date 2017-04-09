@@ -77,15 +77,36 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
     [_selectedBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     _selectedBtn = btn;
+    
+    [self centerTitleBtn:btn];
+}
+
+- (void)centerTitleBtn:(UIButton *)btn {
+    CGFloat offsetX = btn.center.x - SCREEN_WIDTH * .5;
+    
+    if (offsetX < 0) {
+        offsetX = 0;
+    }
+    CGFloat maxOffset = _titleScrollView.contentSize.width - SCREEN_WIDTH;
+    if (offsetX > maxOffset) {
+        offsetX = maxOffset;
+    }
+    
+    [_titleScrollView setContentOffset:CGPointMake(offsetX, 0) animated:true];
 }
 
 - (void)setupSelectedViewController:(NSInteger)index {
+    
     UIViewController *vc = self.childViewControllers[index];
+    
+    if (vc.view.superview) {
+        return;
+    }
+    
     [_contentScrollView addSubview:vc.view];
     
     CGFloat x = SCREEN_WIDTH * index;
     CGFloat height = CGRectGetHeight(_contentScrollView.frame);
-    
     vc.view.frame = (CGRect){x, 0, SCREEN_WIDTH, height};
 }
 
