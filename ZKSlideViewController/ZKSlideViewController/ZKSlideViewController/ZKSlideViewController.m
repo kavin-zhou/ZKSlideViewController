@@ -182,6 +182,10 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
     
     UIButton *titleBtn = _titleBtns[index];
     
+    if ([_selectedBtn isEqual:titleBtn]) {
+        return;
+    }
+    
     [self selectBtn:titleBtn];
     [self setupSelectedViewController:index];
 }
