@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "ZKSlideViewController.h"
 
 @interface AppDelegate ()
 
@@ -22,7 +21,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    ZKSlideViewController *vc = [[ZKSlideViewController alloc] init];
+    ViewController *vc = [[ViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     
     self.window.rootViewController = nav;

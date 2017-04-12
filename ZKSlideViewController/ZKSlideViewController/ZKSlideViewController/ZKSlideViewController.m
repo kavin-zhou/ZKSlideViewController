@@ -61,9 +61,11 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
         btn.tag = i;
         [btn setTitle:vc.title forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:18.f];
         [_titleScrollView addSubview:btn];
         CGFloat btnX = btnWidth * i;
         btn.frame = CGRectMake(btnX, 0, btnWidth, btnHeight);
+        btn.transform = CGAffineTransformMakeScale(.8, .8);
         [btn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
         [_titleBtns addObject:btn];
         i == 0?[self titleClick:btn]:nil;
@@ -74,7 +76,7 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
 }
 
 - (void)selectBtn:(UIButton *)btn {
-    _selectedBtn.transform = CGAffineTransformIdentity;
+    _selectedBtn.transform = CGAffineTransformMakeScale(.8, .8);
     
     [_selectedBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
@@ -86,7 +88,7 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
 
 - (void)setTitleBtnScale:(UIButton *)btn {
     [UIView animateWithDuration:.18 delay:0 options:KeyboardAnimationCurve animations:^{
-        btn.transform = CGAffineTransformMakeScale(1.2, 1.2);
+        btn.transform = CGAffineTransformIdentity;
     } completion:nil];
 }
 
@@ -204,8 +206,8 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
     
     CGFloat leftScale = 1 - rightScale;
     
-    leftBtn.transform = CGAffineTransformMakeScale(leftScale * .2 + 1, leftScale * .2 + 1);
-    rightBtn.transform = CGAffineTransformMakeScale(rightScale * .2 + 1, rightScale * .2 + 1);
+    leftBtn.transform = CGAffineTransformMakeScale(leftScale * .2 + .8, leftScale * .2 + .8);
+    rightBtn.transform = CGAffineTransformMakeScale(rightScale * .2 + .8, rightScale * .2 + .8);
     
     UIColor *rightColor = [UIColor colorWithRed:rightScale green:0 blue:0 alpha:1];
     UIColor *leftColor = [UIColor colorWithRed:leftScale green:0 blue:0 alpha:1];

@@ -165,7 +165,7 @@
 				TargetAttributes = {
 					58314D6B1E9A341E00851184 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = A7Q6ZC4GW5;
+						DevelopmentTeam = 9S49W485R2;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -327,11 +327,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = A7Q6ZC4GW5;
+				DEVELOPMENT_TEAM = 9S49W485R2;
 				INFOPLIST_FILE = ZKSlideViewController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dev-zk.ZKSlideViewController";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dev-zk.slide";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -340,11 +340,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = A7Q6ZC4GW5;
+				DEVELOPMENT_TEAM = 9S49W485R2;
 				INFOPLIST_FILE = ZKSlideViewController/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.dev-zk.ZKSlideViewController";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dev-zk.slide";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -368,6 +368,7 @@
 				58314D851E9A341E00851184 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

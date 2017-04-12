@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ZK. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZKSlideViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : ZKSlideViewController
 
 @end
 
