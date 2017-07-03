@@ -69,7 +69,7 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
         btn.transform = CGAffineTransformMakeScale(.8, .8);
         [btn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
         [_titleBtns addObject:btn];
-        i == 0?[self titleClick:btn]:nil;
+        i == 0 ? [self titleClick:btn] : nil;
     }
     
     _titleScrollView.contentSize = (CGSize){count * btnWidth, 0};
@@ -129,7 +129,9 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
     [self setupSelectedViewController:index];
     
     CGFloat x = SCREEN_WIDTH * index;
-    _contentScrollView.contentOffset = CGPointMake(x, 0);
+    [UIView animateWithDuration:.18 animations:^{
+        _contentScrollView.contentOffset = CGPointMake(x, 0);
+    }];
 }
 
 - (void)setupContentScrollView {
