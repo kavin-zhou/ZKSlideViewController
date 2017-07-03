@@ -1,7 +1,7 @@
 # ZKSlideViewController
 微博发现模块左右滑动 ViewController 效果
 
-![2017-07-03 09.47.21.gif](http://upload-images.jianshu.io/upload_images/1298481-49048522a49a0779.gif?imageMogr2/auto-orient/strip)
+![intro.gif](https://github.com/dev-zhoukang/ZKSlideViewController/blob/master/Source/intro.gif)
 
 ### 使用方法
 1. 创建一个容器控制器，继承自`ZKSlideViewController`
