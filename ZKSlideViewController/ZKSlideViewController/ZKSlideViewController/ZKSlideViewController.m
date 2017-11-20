@@ -22,6 +22,7 @@
 
 static const CGFloat kTitleScrollViewHeight = 50.f;
 static const CGFloat kTitleMargin = 25.f;
+static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
 
 @implementation ZKSlideViewController
 
@@ -63,7 +64,7 @@ static const CGFloat kTitleMargin = 25.f;
         btn.tag = i;
         [btn setTitle:vc.title forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:18.f];
+        btn.titleLabel.font = [UIFont systemFontOfSize:15.f];
         CGFloat btnWidth = [vc.title zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT] + kTitleMargin;
         totalBtnWidth += btnWidth;
         
@@ -71,7 +72,6 @@ static const CGFloat kTitleMargin = 25.f;
         CGFloat btnX = preBtn ? CGRectGetMaxX(preBtn.frame) : 0;
         
         btn.frame = CGRectMake(btnX, 0, btnWidth, btnHeight);
-        btn.transform = CGAffineTransformMakeScale(.8, .8);
         [btn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
         [_titleBtns addObject:btn];
         preBtn = btn;
@@ -80,24 +80,38 @@ static const CGFloat kTitleMargin = 25.f;
     _titleScrollView.contentSize = (CGSize){CGRectGetMaxX(preBtn.frame), 0};
     _titleScrollView.contentInset = UIEdgeInsetsMake(0, kTitleMargin * .5, 0, kTitleMargin * .5);
     _contentScrollView.contentSize = (CGSize){count * SCREEN_WIDTH, 0};
+    [self setupIndicatorView];
     [self titleClick:_titleBtns.firstObject];
 }
 
-- (void)selectBtn:(UIButton *)btn {
-    _selectedBtn.transform = CGAffineTransformMakeScale(.8, .8);
+- (void)setupIndicatorView {
+    if (_indicatorView.superview) {
+        return;
+    }
+    UIView *bottomView = [[UIView alloc] initWithFrame:(CGRect){0, kTitleScrollViewHeight - kTitleScrollViewBottomViewHeight, _titleScrollView.contentSize.width, kTitleScrollViewBottomViewHeight}];
+    bottomView.backgroundColor = [UIColor clearColor];
+    [_titleScrollView addSubview:bottomView];
     
+    _indicatorView = [[UIImageView alloc] init];
+    _indicatorView.us_size = (CGSize){50, kTitleScrollViewBottomViewHeight};
+    _indicatorView.us_centerX = _titleBtns[0].us_centerX;
+    _indicatorView.backgroundColor = [UIColor redColor];
+    _indicatorView.image = [UIImage imageNamed:@"icon_arrow_down"];
+    _indicatorView.layer.masksToBounds = true;
+    _indicatorView.layer.cornerRadius = kTitleScrollViewBottomViewHeight * .5;
+    [bottomView addSubview:_indicatorView];
+}
+
+- (void)selectBtn:(UIButton *)btn {
     [_selectedBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     
     [self centerTitleBtn:btn];
-    [self setTitleBtnScale:btn];
     _selectedBtn = btn;
-}
-
-- (void)setTitleBtnScale:(UIButton *)btn {
-    [UIView animateWithDuration:.18 delay:0 options:KeyboardAnimationCurve animations:^{
-        btn.transform = CGAffineTransformIdentity;
-    } completion:nil];
+    [self animate:^{
+        _indicatorView.us_width = [btn.currentTitle zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT];
+        _indicatorView.us_centerX = btn.us_centerX;
+    }];
 }
 
 - (void)centerTitleBtn:(UIButton *)btn {
@@ -173,26 +187,37 @@ static const CGFloat kTitleMargin = 25.f;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSInteger leftIndex = scrollView.contentOffset.x / SCREEN_WIDTH;
-    NSInteger rightIndex = leftIndex + 1;
+    NSInteger leftIndex = MAX(floorf(scrollView.contentOffset.x / SCREEN_WIDTH), 0);
+    NSInteger rightIndex = MIN(_titleBtns.count - 1, leftIndex + 1);
+    CGFloat slideDistance = scrollView.contentOffset.x / SCREEN_WIDTH;
     
     UIButton *leftBtn = _titleBtns[leftIndex];
-    UIButton *rightBtn = nil;
-    if (rightIndex < _titleBtns.count) {
-        rightBtn = _titleBtns[rightIndex];
+    UIButton *rightBtn = _titleBtns[rightIndex];
+    if (leftIndex == slideDistance) {
+        rightBtn = leftBtn;
     }
-    CGFloat rightScale = scrollView.contentOffset.x / SCREEN_WIDTH;
-    rightScale -= leftIndex;
-    
+    CGFloat rightScale = slideDistance - leftIndex;
     CGFloat leftScale = 1 - rightScale;
+    UIFont *font = rightBtn.titleLabel.font;
     
-    leftBtn.transform = CGAffineTransformMakeScale(leftScale * .2 + .8, leftScale * .2 + .8);
-    rightBtn.transform = CGAffineTransformMakeScale(rightScale * .2 + .8, rightScale * .2 + .8);
+    CGFloat centerDelta = rightBtn.us_centerX - leftBtn.us_centerX;
+    CGFloat rightBtnWidth = [rightBtn.currentTitle zk_stringWidthWithFont:font height:MAXFLOAT];
+    CGFloat leftBtnWidth = [leftBtn.currentTitle zk_stringWidthWithFont:font height:MAXFLOAT];
+    CGFloat widthDelta = rightBtnWidth - leftBtnWidth;
+    
+    [self animate:^{
+        _indicatorView.us_width = leftBtnWidth + widthDelta * rightScale;
+        _indicatorView.us_centerX = leftBtn.us_centerX + centerDelta * rightScale;
+    }];
     
     UIColor *rightColor = [UIColor colorWithRed:rightScale green:0 blue:0 alpha:1];
     UIColor *leftColor = [UIColor colorWithRed:leftScale green:0 blue:0 alpha:1];
     [rightBtn setTitleColor:rightColor forState:UIControlStateNormal];
     [leftBtn setTitleColor:leftColor forState:UIControlStateNormal];
+}
+
+- (void)animate:(void(^)())animate {
+    [UIView animateWithDuration:.6 delay:0 usingSpringWithDamping:.66 initialSpringVelocity:.66 options:UIViewAnimationOptionCurveEaseInOut animations:animate completion:nil];
 }
 
 @end
