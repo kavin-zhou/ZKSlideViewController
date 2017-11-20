@@ -8,6 +8,7 @@
 
 #import "ZKSlideViewController.h"
 #import "ZKSlideHeader.h"
+#import "NSString+ZK_Add.h"
 
 @interface ZKSlideViewController () <UIScrollViewDelegate>
 
@@ -15,6 +16,7 @@
 @property (nonatomic, strong) UIScrollView *contentScrollView;
 @property (nonatomic, strong) UIButton *selectedBtn;
 @property (nonatomic, strong) NSMutableArray <UIButton *> *titleBtns;
+@property (nonatomic, strong) UIImageView *indicatorView;
 
 @end
 
@@ -24,9 +26,7 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self initData];
-    
     [self setup];
 }
 
@@ -52,27 +52,32 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
     }
     
     NSInteger count = self.childViewControllers.count;
-    CGFloat btnWidth = 100.f;
     CGFloat btnHeight = CGRectGetHeight(_titleScrollView.frame);
+    CGFloat totalBtnWidth = 0;
+    UIButton *preBtn = nil;
     
     for (NSInteger i = 0; i < count; i ++) {
         UIViewController *vc = self.childViewControllers[i];
-        
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.tag = i;
         [btn setTitle:vc.title forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:18.f];
+        CGFloat btnWidth = [vc.title zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT] + 25;
+        totalBtnWidth += btnWidth;
+        
         [_titleScrollView addSubview:btn];
-        CGFloat btnX = btnWidth * i;
+        CGFloat btnX = preBtn ? CGRectGetMaxX(preBtn.frame) : 0;
+        
         btn.frame = CGRectMake(btnX, 0, btnWidth, btnHeight);
         btn.transform = CGAffineTransformMakeScale(.8, .8);
         [btn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
         [_titleBtns addObject:btn];
         i == 0 ? [self titleClick:btn] : nil;
+        preBtn = btn;
     }
     
-    _titleScrollView.contentSize = (CGSize){count * btnWidth, 0};
+    _titleScrollView.contentSize = (CGSize){CGRectGetMaxX(preBtn.frame), 0};
     _contentScrollView.contentSize = (CGSize){count * SCREEN_WIDTH, 0};
 }
 

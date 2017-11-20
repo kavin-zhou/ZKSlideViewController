@@ -32,11 +32,11 @@
     [self addChildViewController:hotVC];
     
     ZKListViewController *listVC = [ZKListViewController new];
-    listVC.title = @"榜单";
+    listVC.title = @"榜单榜单";
     [self addChildViewController:listVC];
     
     ZKVideoViewController *videoVC = [ZKVideoViewController new];
-    videoVC.title = @"视频";
+    videoVC.title = @"视频视";
     [self addChildViewController:videoVC];
     
     ZKHeadViewController *headVC = [ZKHeadViewController new];
@@ -44,7 +44,7 @@
     [self addChildViewController:headVC];
     
     ZKNewsViewController *newsVC = [ZKNewsViewController new];
-    newsVC.title = @"新闻";
+    newsVC.title = @"新闻新闻新闻";
     [self addChildViewController:newsVC];
     
     ZKProfileViewController *profielVC = [ZKProfileViewController new];

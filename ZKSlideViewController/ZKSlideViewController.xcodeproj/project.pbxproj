@@ -20,6 +20,7 @@
 		58314D9A1E9A383200851184 /* ZKHeadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D991E9A383200851184 /* ZKHeadViewController.m */; };
 		58314D9D1E9A4BE900851184 /* ZKNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D9C1E9A4BE900851184 /* ZKNewsViewController.m */; };
 		58314DA01E9A4C0000851184 /* ZKProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D9F1E9A4C0000851184 /* ZKProfileViewController.m */; };
+		58A0F78D1FC2D2CE00CC6A55 /* NSString+ZK_Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A0F78C1FC2D2CE00CC6A55 /* NSString+ZK_Add.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		58314D9C1E9A4BE900851184 /* ZKNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKNewsViewController.m; sourceTree = "<group>"; };
 		58314D9E1E9A4C0000851184 /* ZKProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKProfileViewController.h; sourceTree = "<group>"; };
 		58314D9F1E9A4C0000851184 /* ZKProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKProfileViewController.m; sourceTree = "<group>"; };
+		58A0F78B1FC2D2CE00CC6A55 /* NSString+ZK_Add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZK_Add.h"; sourceTree = "<group>"; };
+		58A0F78C1FC2D2CE00CC6A55 /* NSString+ZK_Add.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZK_Add.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,8 @@
 			children = (
 				58314D8B1E9A361C00851184 /* UIView+Addition.h */,
 				58314D8C1E9A361C00851184 /* UIView+Addition.m */,
+				58A0F78B1FC2D2CE00CC6A55 /* NSString+ZK_Add.h */,
+				58A0F78C1FC2D2CE00CC6A55 /* NSString+ZK_Add.m */,
 			);
 			path = support;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 				58314D941E9A381E00851184 /* ZKListViewController.m in Sources */,
 				58314D771E9A341E00851184 /* ViewController.m in Sources */,
 				58314D9A1E9A383200851184 /* ZKHeadViewController.m in Sources */,
+				58A0F78D1FC2D2CE00CC6A55 /* NSString+ZK_Add.m in Sources */,
 				58314DA01E9A4C0000851184 /* ZKProfileViewController.m in Sources */,
 				58314D911E9A381300851184 /* ZKHotViewController.m in Sources */,
 				58314D8D1E9A361C00851184 /* UIView+Addition.m in Sources */,
