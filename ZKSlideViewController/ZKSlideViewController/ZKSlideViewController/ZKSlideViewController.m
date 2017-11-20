@@ -21,6 +21,7 @@
 @end
 
 static const CGFloat kTitleScrollViewHeight = 50.f;
+static const CGFloat kTitleMargin = 25.f;
 
 @implementation ZKSlideViewController
 
@@ -63,7 +64,7 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
         [btn setTitle:vc.title forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:18.f];
-        CGFloat btnWidth = [vc.title zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT] + 25;
+        CGFloat btnWidth = [vc.title zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT] + kTitleMargin;
         totalBtnWidth += btnWidth;
         
         [_titleScrollView addSubview:btn];
@@ -73,12 +74,13 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
         btn.transform = CGAffineTransformMakeScale(.8, .8);
         [btn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
         [_titleBtns addObject:btn];
-        i == 0 ? [self titleClick:btn] : nil;
         preBtn = btn;
     }
     
     _titleScrollView.contentSize = (CGSize){CGRectGetMaxX(preBtn.frame), 0};
+    _titleScrollView.contentInset = UIEdgeInsetsMake(0, kTitleMargin * .5, 0, kTitleMargin * .5);
     _contentScrollView.contentSize = (CGSize){count * SCREEN_WIDTH, 0};
+    [self titleClick:_titleBtns.firstObject];
 }
 
 - (void)selectBtn:(UIButton *)btn {
@@ -101,14 +103,13 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
 - (void)centerTitleBtn:(UIButton *)btn {
     CGFloat offsetX = btn.center.x - SCREEN_WIDTH * .5;
     
-    if (offsetX < 0) {
-        offsetX = 0;
+    if (offsetX < -kTitleMargin * .5) {
+        offsetX = -kTitleMargin * .5;
     }
-    CGFloat maxOffset = _titleScrollView.contentSize.width - SCREEN_WIDTH;
+    CGFloat maxOffset = _titleScrollView.contentSize.width - SCREEN_WIDTH + kTitleMargin * .5;
     if (offsetX > maxOffset) {
         offsetX = maxOffset;
     }
-    
     [_titleScrollView setContentOffset:CGPointMake(offsetX, 0) animated:true];
 }
 
@@ -163,13 +164,10 @@ static const CGFloat kTitleScrollViewHeight = 50.f;
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     NSInteger index = scrollView.contentOffset.x / SCREEN_WIDTH;
-    
     UIButton *titleBtn = _titleBtns[index];
-    
     if ([_selectedBtn isEqual:titleBtn]) {
         return;
     }
-    
     [self selectBtn:titleBtn];
     [self setupSelectedViewController:index];
 }
