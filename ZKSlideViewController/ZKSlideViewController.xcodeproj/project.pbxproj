@@ -14,12 +14,6 @@
 		58314D7F1E9A341E00851184 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58314D7D1E9A341E00851184 /* LaunchScreen.storyboard */; };
 		58314D891E9A34C600851184 /* ZKSlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D881E9A34C600851184 /* ZKSlideViewController.m */; };
 		58314D8D1E9A361C00851184 /* UIView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D8C1E9A361C00851184 /* UIView+Addition.m */; };
-		58314D911E9A381300851184 /* ZKHotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D901E9A381300851184 /* ZKHotViewController.m */; };
-		58314D941E9A381E00851184 /* ZKListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D931E9A381E00851184 /* ZKListViewController.m */; };
-		58314D971E9A382900851184 /* ZKVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D961E9A382900851184 /* ZKVideoViewController.m */; };
-		58314D9A1E9A383200851184 /* ZKHeadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D991E9A383200851184 /* ZKHeadViewController.m */; };
-		58314D9D1E9A4BE900851184 /* ZKNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D9C1E9A4BE900851184 /* ZKNewsViewController.m */; };
-		58314DA01E9A4C0000851184 /* ZKProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D9F1E9A4C0000851184 /* ZKProfileViewController.m */; };
 		58A0F78D1FC2D2CE00CC6A55 /* NSString+ZK_Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A0F78C1FC2D2CE00CC6A55 /* NSString+ZK_Add.m */; };
 /* End PBXBuildFile section */
 
@@ -38,18 +32,6 @@
 		58314D8B1E9A361C00851184 /* UIView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Addition.h"; sourceTree = "<group>"; };
 		58314D8C1E9A361C00851184 /* UIView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addition.m"; sourceTree = "<group>"; };
 		58314D8E1E9A365600851184 /* ZKSlideHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKSlideHeader.h; sourceTree = "<group>"; };
-		58314D8F1E9A381300851184 /* ZKHotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHotViewController.h; sourceTree = "<group>"; };
-		58314D901E9A381300851184 /* ZKHotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKHotViewController.m; sourceTree = "<group>"; };
-		58314D921E9A381E00851184 /* ZKListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKListViewController.h; sourceTree = "<group>"; };
-		58314D931E9A381E00851184 /* ZKListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKListViewController.m; sourceTree = "<group>"; };
-		58314D951E9A382900851184 /* ZKVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKVideoViewController.h; sourceTree = "<group>"; };
-		58314D961E9A382900851184 /* ZKVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKVideoViewController.m; sourceTree = "<group>"; };
-		58314D981E9A383200851184 /* ZKHeadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKHeadViewController.h; sourceTree = "<group>"; };
-		58314D991E9A383200851184 /* ZKHeadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKHeadViewController.m; sourceTree = "<group>"; };
-		58314D9B1E9A4BE900851184 /* ZKNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKNewsViewController.h; sourceTree = "<group>"; };
-		58314D9C1E9A4BE900851184 /* ZKNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKNewsViewController.m; sourceTree = "<group>"; };
-		58314D9E1E9A4C0000851184 /* ZKProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKProfileViewController.h; sourceTree = "<group>"; };
-		58314D9F1E9A4C0000851184 /* ZKProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKProfileViewController.m; sourceTree = "<group>"; };
 		58A0F78B1FC2D2CE00CC6A55 /* NSString+ZK_Add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZK_Add.h"; sourceTree = "<group>"; };
 		58A0F78C1FC2D2CE00CC6A55 /* NSString+ZK_Add.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZK_Add.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,18 +70,6 @@
 				58314D731E9A341E00851184 /* AppDelegate.m */,
 				58314D751E9A341E00851184 /* ViewController.h */,
 				58314D761E9A341E00851184 /* ViewController.m */,
-				58314D8F1E9A381300851184 /* ZKHotViewController.h */,
-				58314D901E9A381300851184 /* ZKHotViewController.m */,
-				58314D921E9A381E00851184 /* ZKListViewController.h */,
-				58314D931E9A381E00851184 /* ZKListViewController.m */,
-				58314D951E9A382900851184 /* ZKVideoViewController.h */,
-				58314D961E9A382900851184 /* ZKVideoViewController.m */,
-				58314D981E9A383200851184 /* ZKHeadViewController.h */,
-				58314D991E9A383200851184 /* ZKHeadViewController.m */,
-				58314D9B1E9A4BE900851184 /* ZKNewsViewController.h */,
-				58314D9C1E9A4BE900851184 /* ZKNewsViewController.m */,
-				58314D9E1E9A4C0000851184 /* ZKProfileViewController.h */,
-				58314D9F1E9A4C0000851184 /* ZKProfileViewController.m */,
 				58314D861E9A34B000851184 /* ZKSlideViewController */,
 				58314D6F1E9A341E00851184 /* Supporting Files */,
 			);
@@ -210,16 +180,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58314D9D1E9A4BE900851184 /* ZKNewsViewController.m in Sources */,
-				58314D941E9A381E00851184 /* ZKListViewController.m in Sources */,
 				58314D771E9A341E00851184 /* ViewController.m in Sources */,
-				58314D9A1E9A383200851184 /* ZKHeadViewController.m in Sources */,
 				58A0F78D1FC2D2CE00CC6A55 /* NSString+ZK_Add.m in Sources */,
-				58314DA01E9A4C0000851184 /* ZKProfileViewController.m in Sources */,
-				58314D911E9A381300851184 /* ZKHotViewController.m in Sources */,
 				58314D8D1E9A361C00851184 /* UIView+Addition.m in Sources */,
 				58314D741E9A341E00851184 /* AppDelegate.m in Sources */,
-				58314D971E9A382900851184 /* ZKVideoViewController.m in Sources */,
 				58314D711E9A341E00851184 /* main.m in Sources */,
 				58314D891E9A34C600851184 /* ZKSlideViewController.m in Sources */,
 			);

@@ -7,12 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "ZKHotViewController.h"
-#import "ZKListViewController.h"
-#import "ZKVideoViewController.h"
-#import "ZKHeadViewController.h"
-#import "ZKNewsViewController.h"
-#import "ZKProfileViewController.h"
+#import "ZKSlideHeader.h"
 
 @interface ViewController ()
 
@@ -27,29 +22,20 @@
 }
 
 - (void)setupChildViewControllers {
-    ZKHotViewController *hotVC = [ZKHotViewController new];
-    hotVC.title = @"热门";
-    [self addChildViewController:hotVC];
-    
-    ZKListViewController *listVC = [ZKListViewController new];
-    listVC.title = @"榜单榜单";
-    [self addChildViewController:listVC];
-    
-    ZKVideoViewController *videoVC = [ZKVideoViewController new];
-    videoVC.title = @"视频视";
-    [self addChildViewController:videoVC];
-    
-    ZKHeadViewController *headVC = [ZKHeadViewController new];
-    headVC.title = @"头条";
-    [self addChildViewController:headVC];
-    
-    ZKNewsViewController *newsVC = [ZKNewsViewController new];
-    newsVC.title = @"新闻新闻新闻";
-    [self addChildViewController:newsVC];
-    
-    ZKProfileViewController *profielVC = [ZKProfileViewController new];
-    profielVC.title = @"个人";
-    [self addChildViewController:profielVC];
+    NSArray <NSString *> *titles = @[
+                                     @"热门",
+                                     @"最新电视剧",
+                                     @"我",
+                                     @"关于北京的那些事",
+                                     @"自选",
+                                     @"最热商品"
+                                     ];
+    [titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIViewController *vc = [UIViewController new];
+        vc.title = obj;
+        vc.view.backgroundColor = ZKRandomColor;
+        [self addChildViewController:vc];
+    }];
 }
 
 @end

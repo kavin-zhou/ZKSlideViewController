@@ -22,6 +22,9 @@
 #define DLog(...)
 #endif
 
+#define ZKColor(r,g,b,a)        [UIColor colorWithRed:r/255.f green:g/255.f blue:b/255.f alpha:a] 
+#define ZKRandomColor           ZKColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256), 1)
+
 #define GlobalBlueColor_Normal    [UIColor colorWithRed:63/255.f green:158/255.f blue:214/255.f alpha:1]
 #define GlobalBlueColor_HL        [UIColor colorWithRed:43/255.f green:138/255.f blue:194/255.f alpha:1]
 #define GlobalBlueColor_Disabled  [UIColor colorWithRed:63/255.f green:158/255.f blue:214/255.f alpha:.4]
