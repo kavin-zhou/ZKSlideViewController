@@ -213,9 +213,10 @@ static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
     CGFloat deltaRateRed = (self.titleColorHighlight.zk_red - self.titleColorNormal.zk_red) * rightScale;
     CGFloat deltaRateGreen = (self.titleColorHighlight.zk_green - self.titleColorNormal.zk_green) * rightScale;
     CGFloat deltaRateBlue = (self.titleColorHighlight.zk_blue - self.titleColorNormal.zk_blue) * rightScale;
+    CGFloat deltaRateAlpha = (self.titleColorHighlight.zk_alpha - self.titleColorNormal.zk_alpha) * rightScale;
     
-    UIColor *rightColor = [UIColor colorWithRed:(_titleColorNormal.zk_red + deltaRateRed) green:(_titleColorNormal.zk_green + deltaRateGreen) blue:(_titleColorNormal.zk_blue + deltaRateBlue) alpha:1];
-    UIColor *leftColor = [UIColor colorWithRed:(_titleColorHighlight.zk_red - deltaRateRed) green:(_titleColorHighlight.zk_green - deltaRateGreen) blue:(_titleColorHighlight.zk_blue - deltaRateBlue) alpha:1];
+    UIColor *rightColor = [UIColor colorWithRed:(_titleColorNormal.zk_red + deltaRateRed) green:(_titleColorNormal.zk_green + deltaRateGreen) blue:(_titleColorNormal.zk_blue + deltaRateBlue) alpha:(_titleColorNormal.zk_alpha + deltaRateAlpha)];
+    UIColor *leftColor = [UIColor colorWithRed:(_titleColorHighlight.zk_red - deltaRateRed) green:(_titleColorHighlight.zk_green - deltaRateGreen) blue:(_titleColorHighlight.zk_blue - deltaRateBlue) alpha:(_titleColorHighlight.zk_alpha - deltaRateAlpha)];
     [rightBtn setTitleColor:rightColor forState:UIControlStateNormal];
     [leftBtn setTitleColor:leftColor forState:UIControlStateNormal];
 }
