@@ -64,7 +64,7 @@ static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.tag = i;
         [btn setTitle:vc.title forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btn setTitleColor:_titleColorNormal forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:15.f];
         CGFloat btnWidth = [vc.title zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT] + kTitleMargin;
         totalBtnWidth += btnWidth;
