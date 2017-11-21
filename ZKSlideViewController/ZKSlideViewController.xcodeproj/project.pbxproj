@@ -14,6 +14,7 @@
 		58314D7F1E9A341E00851184 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58314D7D1E9A341E00851184 /* LaunchScreen.storyboard */; };
 		58314D891E9A34C600851184 /* ZKSlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D881E9A34C600851184 /* ZKSlideViewController.m */; };
 		58314D8D1E9A361C00851184 /* UIView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D8C1E9A361C00851184 /* UIView+Addition.m */; };
+		58998EE81FC3CC9200F0A603 /* UIColor+ZK_Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 58998EE71FC3CC9200F0A603 /* UIColor+ZK_Add.m */; };
 		58A0F78D1FC2D2CE00CC6A55 /* NSString+ZK_Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A0F78C1FC2D2CE00CC6A55 /* NSString+ZK_Add.m */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,8 @@
 		58314D8B1E9A361C00851184 /* UIView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Addition.h"; sourceTree = "<group>"; };
 		58314D8C1E9A361C00851184 /* UIView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addition.m"; sourceTree = "<group>"; };
 		58314D8E1E9A365600851184 /* ZKSlideHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKSlideHeader.h; sourceTree = "<group>"; };
+		58998EE61FC3CC9200F0A603 /* UIColor+ZK_Add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZK_Add.h"; sourceTree = "<group>"; };
+		58998EE71FC3CC9200F0A603 /* UIColor+ZK_Add.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZK_Add.m"; sourceTree = "<group>"; };
 		58A0F78B1FC2D2CE00CC6A55 /* NSString+ZK_Add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZK_Add.h"; sourceTree = "<group>"; };
 		58A0F78C1FC2D2CE00CC6A55 /* NSString+ZK_Add.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZK_Add.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +108,8 @@
 				58314D8C1E9A361C00851184 /* UIView+Addition.m */,
 				58A0F78B1FC2D2CE00CC6A55 /* NSString+ZK_Add.h */,
 				58A0F78C1FC2D2CE00CC6A55 /* NSString+ZK_Add.m */,
+				58998EE61FC3CC9200F0A603 /* UIColor+ZK_Add.h */,
+				58998EE71FC3CC9200F0A603 /* UIColor+ZK_Add.m */,
 			);
 			path = support;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 				58314D8D1E9A361C00851184 /* UIView+Addition.m in Sources */,
 				58314D741E9A341E00851184 /* AppDelegate.m in Sources */,
 				58314D711E9A341E00851184 /* main.m in Sources */,
+				58998EE81FC3CC9200F0A603 /* UIColor+ZK_Add.m in Sources */,
 				58314D891E9A34C600851184 /* ZKSlideViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

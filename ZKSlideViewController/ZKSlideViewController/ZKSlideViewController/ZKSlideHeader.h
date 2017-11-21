@@ -10,6 +10,8 @@
 #define ZKSlideHeader_h
 
 #import "UIView+Addition.h"
+#import "UIColor+ZK_Add.h"
+#import "NSString+ZK_Add.h"
 
 #define TCPublicKey   @"45f5b905-4d15-41ca-ba4b-3a8612fc43cf"
 #define TCUrl_Check   @"http://cap-5-2-0.touclick.com/public/check"

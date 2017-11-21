@@ -19,6 +19,8 @@
     [super viewDidLoad];
     self.title = @"首页";
     [self setupChildViewControllers];
+    self.titleColorNormal = [UIColor blackColor];
+    self.titleColorHighlight = [UIColor purpleColor];
 }
 
 - (void)setupChildViewControllers {
