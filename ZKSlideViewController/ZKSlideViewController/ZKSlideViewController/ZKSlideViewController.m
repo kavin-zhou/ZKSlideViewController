@@ -20,7 +20,7 @@
 @end
 
 static const CGFloat kTitleScrollViewHeight = 50.f;
-static const CGFloat kTitleMargin = 25.f;
+static CGFloat kTitleMargin = 25.f;
 static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
 
 @implementation ZKSlideViewController
@@ -55,6 +55,11 @@ static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
     }
     
     NSInteger count = self.childViewControllers.count;
+    BOOL shouldAvg = count < 5;
+    if (shouldAvg) {
+        kTitleMargin = 0;
+    }
+    
     CGFloat btnHeight = CGRectGetHeight(_titleScrollView.frame);
     CGFloat totalBtnWidth = 0;
     UIButton *preBtn = nil;
@@ -66,7 +71,7 @@ static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
         [btn setTitle:vc.title forState:UIControlStateNormal];
         [btn setTitleColor:_titleColorNormal forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:15.f];
-        CGFloat btnWidth = [vc.title zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT] + kTitleMargin;
+        CGFloat btnWidth = shouldAvg ? (SCREEN_WIDTH / count) : [vc.title zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT] + kTitleMargin;
         totalBtnWidth += btnWidth;
         
         [_titleScrollView addSubview:btn];

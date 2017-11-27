@@ -28,9 +28,6 @@
                                      @"热门",
                                      @"最新电视剧",
                                      @"我",
-                                     @"关于北京的那些事",
-                                     @"自选",
-                                     @"最热商品"
                                      ];
     [titles enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIViewController *vc = [UIViewController new];
