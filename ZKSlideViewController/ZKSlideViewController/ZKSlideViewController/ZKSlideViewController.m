@@ -11,17 +11,18 @@
 
 @interface ZKSlideViewController () <UIScrollViewDelegate>
 
-@property (nonatomic, strong) UIScrollView *titleScrollView;
-@property (nonatomic, strong) UIScrollView *contentScrollView;
-@property (nonatomic, strong) UIButton *selectedBtn;
+@property (nonatomic, strong) UIScrollView         *titleScrollView;
+@property (nonatomic, strong) UIScrollView         *contentScrollView;
+@property (nonatomic, strong) UIButton             *selectedBtn;
+@property (nonatomic, strong) UIImageView          *indicatorView;
 @property (nonatomic, strong) NSMutableArray <UIButton *> *titleBtns;
-@property (nonatomic, strong) UIImageView *indicatorView;
 
 @end
 
 static const CGFloat kTitleScrollViewHeight = 50.f;
 static CGFloat kTitleMargin = 25.f;
 static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
+static const CGFloat kIndicatorDefaultWidth = 30.f;
 
 @implementation ZKSlideViewController
 
@@ -99,7 +100,7 @@ static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
     [_titleScrollView addSubview:bottomView];
     
     _indicatorView = [[UIImageView alloc] init];
-    _indicatorView.us_size = (CGSize){50, kTitleScrollViewBottomViewHeight};
+    _indicatorView.us_size = (CGSize){kIndicatorDefaultWidth, kTitleScrollViewBottomViewHeight};
     _indicatorView.us_centerX = _titleBtns[0].us_centerX;
     _indicatorView.backgroundColor = [_titleColorHighlight colorWithAlphaComponent:.9];
     _indicatorView.image = [UIImage imageNamed:@"icon_arrow_down"];
@@ -115,7 +116,9 @@ static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
     [self _centerTitleBtn:btn];
     _selectedBtn = btn;
     [self _animate:^{
-        _indicatorView.us_width = [btn.currentTitle zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT];
+        if (_indicatorStyle == ZKSlideIndicatorStyleNormal) {
+            _indicatorView.us_width = [btn.currentTitle zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT];
+        }
         _indicatorView.us_centerX = btn.us_centerX;
     }];
 }
@@ -211,7 +214,17 @@ static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
     CGFloat widthDelta = rightBtnWidth - leftBtnWidth;
     
     [self _animate:^{
-        _indicatorView.us_width = leftBtnWidth + widthDelta * rightScale;
+        if (_indicatorStyle == ZKSlideIndicatorStyleNormal) {
+            _indicatorView.us_width = leftBtnWidth + widthDelta * rightScale;
+        }
+        else if (_indicatorStyle == ZKSlideIndicatorStyleStickiness) {
+            if (rightScale <= .5) {
+                _indicatorView.us_width = kIndicatorDefaultWidth + centerDelta * rightScale * 2;
+            }
+            else {
+                _indicatorView.us_width = kIndicatorDefaultWidth + centerDelta - (rightScale-.5) * 2 * centerDelta;
+            }
+        }
         _indicatorView.us_centerX = leftBtn.us_centerX + centerDelta * rightScale;
     }];
     
@@ -220,14 +233,25 @@ static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
     CGFloat deltaRateBlue = (self.titleColorHighlight.zk_blue - self.titleColorNormal.zk_blue) * rightScale;
     CGFloat deltaRateAlpha = (self.titleColorHighlight.zk_alpha - self.titleColorNormal.zk_alpha) * rightScale;
     
-    UIColor *rightColor = [UIColor colorWithRed:(_titleColorNormal.zk_red + deltaRateRed) green:(_titleColorNormal.zk_green + deltaRateGreen) blue:(_titleColorNormal.zk_blue + deltaRateBlue) alpha:(_titleColorNormal.zk_alpha + deltaRateAlpha)];
-    UIColor *leftColor = [UIColor colorWithRed:(_titleColorHighlight.zk_red - deltaRateRed) green:(_titleColorHighlight.zk_green - deltaRateGreen) blue:(_titleColorHighlight.zk_blue - deltaRateBlue) alpha:(_titleColorHighlight.zk_alpha - deltaRateAlpha)];
+    UIColor *rightColor = [UIColor colorWithRed:(_titleColorNormal.zk_red + deltaRateRed)
+                                          green:(_titleColorNormal.zk_green + deltaRateGreen)
+                                           blue:(_titleColorNormal.zk_blue + deltaRateBlue)
+                                          alpha:(_titleColorNormal.zk_alpha + deltaRateAlpha)];
+    UIColor *leftColor = [UIColor colorWithRed:(_titleColorHighlight.zk_red - deltaRateRed)
+                                         green:(_titleColorHighlight.zk_green - deltaRateGreen)
+                                          blue:(_titleColorHighlight.zk_blue - deltaRateBlue)
+                                         alpha:(_titleColorHighlight.zk_alpha - deltaRateAlpha)];
     [rightBtn setTitleColor:rightColor forState:UIControlStateNormal];
     [leftBtn setTitleColor:leftColor forState:UIControlStateNormal];
 }
 
 - (void)_animate:(void(^)())animate {
-    [UIView animateWithDuration:.6 delay:0 usingSpringWithDamping:.66 initialSpringVelocity:.66 options:UIViewAnimationOptionCurveEaseInOut animations:animate completion:nil];
+    if (_indicatorStyle == ZKSlideIndicatorStyleNormal) {
+        [UIView animateWithDuration:.6 delay:0 usingSpringWithDamping:.66 initialSpringVelocity:.66 options:UIViewAnimationOptionCurveEaseInOut animations:animate completion:nil];
+    }
+    else if (_indicatorStyle == ZKSlideIndicatorStyleStickiness) {
+        [UIView animateWithDuration:.25 animations:animate];
+    }
 }
 
 @end
