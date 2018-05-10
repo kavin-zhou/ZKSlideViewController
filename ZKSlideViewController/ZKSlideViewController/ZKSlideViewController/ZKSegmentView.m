@@ -12,6 +12,8 @@
 
 @interface ZKSegmentView ()
 
+@property (nonatomic, strong) UIButton             *selectedBtn;
+
 @end
 
 CGFloat kTitleMargin = 25.f;
@@ -102,7 +104,14 @@ CGFloat kTitleMargin = 25.f;
     _titleScrollView.contentInset = UIEdgeInsetsMake(0, kTitleMargin * .5, 0, kTitleMargin * .5);
     baseVC.contentScrollView.contentSize = (CGSize){count * SCREEN_WIDTH, 0};
     [self _setupIndicatorView];
-    [baseVC _titleClick:_titleBtns.firstObject];
+    [self _titleClick:_titleBtns.firstObject];
+}
+
+- (void)_titleClick:(UIButton *)btn {
+    [self _selectBtn:btn];
+    
+    NSInteger index = btn.tag;
+    !self.selectCallback ?: _selectCallback(index);
 }
 
 - (void)_centerTitleBtn:(UIButton *)btn {
@@ -116,6 +125,20 @@ CGFloat kTitleMargin = 25.f;
         offsetX = maxOffset;
     }
     [_titleScrollView setContentOffset:CGPointMake(offsetX, 0) animated:true];
+}
+
+- (void)_selectBtn:(UIButton *)btn {
+    [_selectedBtn setTitleColor:_titleColorNormal forState:UIControlStateNormal];
+    [btn setTitleColor:_titleColorHighlight forState:UIControlStateNormal];
+    
+    [self _centerTitleBtn:btn];
+    _selectedBtn = btn;
+    [UIView animateWithDuration:.2 animations:^{
+        if (_indicatorStyle == ZKSlideIndicatorStyleNormal) {
+            _indicatorView.us_width = [btn.currentTitle zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT];
+        }
+        _indicatorView.us_centerX = btn.us_centerX;
+    }];
 }
 
 @end

@@ -7,11 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-typedef NS_ENUM(NSUInteger, ZKSlideIndicatorStyle) {
-    ZKSlideIndicatorStyleNormal,     //!< 正常样式
-    ZKSlideIndicatorStyleStickiness, //!< 仿微博粘性指示器效果
-};
+#import "ZKSegmentView.h"
 
 @interface ZKSlideViewController : UIViewController
 
@@ -20,7 +16,5 @@ typedef NS_ENUM(NSUInteger, ZKSlideIndicatorStyle) {
 @property (nonatomic, strong) UIColor *titleColorHighlight; //!< 高亮颜色
 
 @property (nonatomic, strong) UIScrollView         *contentScrollView;
-
-- (void)_titleClick:(UIButton *)btn;
 
 @end
