@@ -20,6 +20,9 @@
 		5849D6D220A4305400C80811 /* ZKSecondSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5849D6D120A4305400C80811 /* ZKSecondSubViewController.m */; };
 		5849D6D520A4306B00C80811 /* ZKThirdSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5849D6D420A4306B00C80811 /* ZKThirdSubViewController.m */; };
 		5849D6D820A4308000C80811 /* ZKBaseSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5849D6D720A4308000C80811 /* ZKBaseSubViewController.m */; };
+		5849D6DC20A4331200C80811 /* ZKWeiboHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5849D6D920A4331200C80811 /* ZKWeiboHeaderView.m */; };
+		5849D6DD20A4331200C80811 /* ZKWeiboHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5849D6DB20A4331200C80811 /* ZKWeiboHeaderView.xib */; };
+		5849D6E020A4332200C80811 /* ColorUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5849D6DF20A4332200C80811 /* ColorUtility.m */; };
 		58998EE81FC3CC9200F0A603 /* UIColor+ZK_Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 58998EE71FC3CC9200F0A603 /* UIColor+ZK_Add.m */; };
 		58A0F78D1FC2D2CE00CC6A55 /* NSString+ZK_Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A0F78C1FC2D2CE00CC6A55 /* NSString+ZK_Add.m */; };
 /* End PBXBuildFile section */
@@ -51,6 +54,11 @@
 		5849D6D420A4306B00C80811 /* ZKThirdSubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKThirdSubViewController.m; sourceTree = "<group>"; };
 		5849D6D620A4308000C80811 /* ZKBaseSubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKBaseSubViewController.h; sourceTree = "<group>"; };
 		5849D6D720A4308000C80811 /* ZKBaseSubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKBaseSubViewController.m; sourceTree = "<group>"; };
+		5849D6D920A4331200C80811 /* ZKWeiboHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZKWeiboHeaderView.m; sourceTree = "<group>"; };
+		5849D6DA20A4331200C80811 /* ZKWeiboHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZKWeiboHeaderView.h; sourceTree = "<group>"; };
+		5849D6DB20A4331200C80811 /* ZKWeiboHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZKWeiboHeaderView.xib; sourceTree = "<group>"; };
+		5849D6DE20A4332200C80811 /* ColorUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtility.h; sourceTree = "<group>"; };
+		5849D6DF20A4332200C80811 /* ColorUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtility.m; sourceTree = "<group>"; };
 		58998EE61FC3CC9200F0A603 /* UIColor+ZK_Add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZK_Add.h"; sourceTree = "<group>"; };
 		58998EE71FC3CC9200F0A603 /* UIColor+ZK_Add.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZK_Add.m"; sourceTree = "<group>"; };
 		58A0F78B1FC2D2CE00CC6A55 /* NSString+ZK_Add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZK_Add.h"; sourceTree = "<group>"; };
@@ -101,6 +109,11 @@
 				5849D6D420A4306B00C80811 /* ZKThirdSubViewController.m */,
 				5849D6D620A4308000C80811 /* ZKBaseSubViewController.h */,
 				5849D6D720A4308000C80811 /* ZKBaseSubViewController.m */,
+				5849D6DA20A4331200C80811 /* ZKWeiboHeaderView.h */,
+				5849D6D920A4331200C80811 /* ZKWeiboHeaderView.m */,
+				5849D6DB20A4331200C80811 /* ZKWeiboHeaderView.xib */,
+				5849D6DE20A4332200C80811 /* ColorUtility.h */,
+				5849D6DF20A4332200C80811 /* ColorUtility.m */,
 				58314D861E9A34B000851184 /* ZKSlideViewController */,
 				58314D6F1E9A341E00851184 /* Supporting Files */,
 			);
@@ -205,6 +218,7 @@
 			files = (
 				58314D7F1E9A341E00851184 /* LaunchScreen.storyboard in Resources */,
 				58314D7C1E9A341E00851184 /* Assets.xcassets in Resources */,
+				5849D6DD20A4331200C80811 /* ZKWeiboHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,10 +229,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5849D6E020A4332200C80811 /* ColorUtility.m in Sources */,
 				5849D6D820A4308000C80811 /* ZKBaseSubViewController.m in Sources */,
 				5849D6CC20A4300500C80811 /* ZKHomePageViewController.m in Sources */,
 				58314D771E9A341E00851184 /* ViewController.m in Sources */,
 				5849D6D520A4306B00C80811 /* ZKThirdSubViewController.m in Sources */,
+				5849D6DC20A4331200C80811 /* ZKWeiboHeaderView.m in Sources */,
 				58A0F78D1FC2D2CE00CC6A55 /* NSString+ZK_Add.m in Sources */,
 				5849D6D220A4305400C80811 /* ZKSecondSubViewController.m in Sources */,
 				58314D8D1E9A361C00851184 /* UIView+Addition.m in Sources */,

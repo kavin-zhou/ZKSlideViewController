@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="q1d-RK-MKr" userLabel="headerView" customClass="ZKWeiboHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="240"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="123.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="9Uv-nf-1T1">
+                    <rect key="frame" x="0.0" y="-160" width="320" height="360"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="360" id="QNZ-lR-hSj"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4E-Gf-yEw">
+                    <rect key="frame" x="110.5" y="105" width="100" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="DRg-PP-Dy3"/>
+                        <constraint firstAttribute="height" constant="30" id="x1l-vE-MCd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ncw-gP-Z2I" customClass="ZKSegmentView">
+                    <rect key="frame" x="0.0" y="200" width="320" height="40"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yS-Yk-SzD">
+                    <rect key="frame" x="137" y="135" width="46" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="9qC-sd-drB"/>
+                        <constraint firstAttribute="width" constant="46" id="oRq-hn-Tws"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="btnClick:" destination="q1d-RK-MKr" eventType="touchUpInside" id="KgX-oo-BFB"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="9Uv-nf-1T1" firstAttribute="leading" secondItem="q1d-RK-MKr" secondAttribute="leading" id="4fJ-WL-Oj1"/>
+                <constraint firstItem="n4E-Gf-yEw" firstAttribute="centerY" secondItem="q1d-RK-MKr" secondAttribute="centerY" id="IxL-oe-UtK"/>
+                <constraint firstItem="1yS-Yk-SzD" firstAttribute="centerX" secondItem="q1d-RK-MKr" secondAttribute="centerX" id="Jps-wa-h2C"/>
+                <constraint firstAttribute="bottom" secondItem="Ncw-gP-Z2I" secondAttribute="bottom" id="Ofq-YP-d2K"/>
+                <constraint firstAttribute="trailing" secondItem="Ncw-gP-Z2I" secondAttribute="trailing" id="Tuv-59-0dx"/>
+                <constraint firstItem="n4E-Gf-yEw" firstAttribute="centerX" secondItem="q1d-RK-MKr" secondAttribute="centerX" id="cap-Hh-gRt"/>
+                <constraint firstItem="1yS-Yk-SzD" firstAttribute="centerY" secondItem="q1d-RK-MKr" secondAttribute="centerY" constant="30" id="fQz-0h-QOv"/>
+                <constraint firstAttribute="trailing" secondItem="9Uv-nf-1T1" secondAttribute="trailing" id="fyu-zO-CVS"/>
+                <constraint firstItem="Ncw-gP-Z2I" firstAttribute="top" secondItem="9Uv-nf-1T1" secondAttribute="bottom" id="sPT-Li-L9N"/>
+                <constraint firstItem="9Uv-nf-1T1" firstAttribute="top" secondItem="q1d-RK-MKr" secondAttribute="top" constant="-160" id="yBd-nP-M3E"/>
+                <constraint firstItem="Ncw-gP-Z2I" firstAttribute="leading" secondItem="q1d-RK-MKr" secondAttribute="leading" id="yHb-Um-Ur3"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="label" destination="n4E-Gf-yEw" id="Sse-Gg-Nb7"/>
+                <outlet property="segCtrl" destination="Ncw-gP-Z2I" id="q3V-vT-T5m"/>
+            </connections>
+            <point key="canvasLocation" x="750" y="645"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="123.jpg" width="618" height="582"/>
+    </resources>
+</document>
