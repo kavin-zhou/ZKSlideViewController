@@ -65,10 +65,10 @@ static const CGFloat kIndicatorDefaultWidth = 30.f;
     _indicatorView = [[UIImageView alloc] init];
     _indicatorView.us_size = (CGSize){kIndicatorDefaultWidth, kTitleScrollViewBottomViewHeight};
     _indicatorView.us_centerX = _titleBtns[0].us_centerX;
-    _indicatorView.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:.9];
     _indicatorView.image = [UIImage imageNamed:@"icon_arrow_down"];
     _indicatorView.layer.masksToBounds = true;
     _indicatorView.layer.cornerRadius = kTitleScrollViewBottomViewHeight * .5;
+    _indicatorView.backgroundColor = [_titleColorHighlight colorWithAlphaComponent:.9];
     [bottomView addSubview:_indicatorView];
 }
 

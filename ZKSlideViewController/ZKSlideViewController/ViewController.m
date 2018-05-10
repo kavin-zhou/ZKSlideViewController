@@ -20,8 +20,8 @@
     self.title = @"首页";
     self.indicatorStyle = ZKSlideIndicatorStyleStickiness;
     [self setupChildViewControllers];
-    self.titleColorNormal = [UIColor blackColor];
-    self.titleColorHighlight = [UIColor purpleColor];
+    self.titleColorNormal = [UIColor darkGrayColor];
+    self.titleColorHighlight = [UIColor redColor];
 }
 
 - (void)setupChildViewControllers {
