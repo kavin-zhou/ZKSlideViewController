@@ -41,6 +41,9 @@ static const CGFloat kIndicatorDefaultWidth = 30.f;
 }
 
 - (void)setup {
+    _titleColorNormal = [UIColor darkGrayColor];
+    _titleColorHighlight = [UIColor redColor];
+    
     _titleBtns = [NSMutableArray array];
     [self _setupTitleScrollView];
 }
