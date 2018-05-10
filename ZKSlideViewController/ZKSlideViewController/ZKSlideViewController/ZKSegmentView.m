@@ -67,12 +67,13 @@ CGFloat kTitleMargin = 25.f;
     [bottomView addSubview:_indicatorView];
 }
 
-- (void)setupTitles:(ZKSlideViewController *)baseVC {
+- (void)setTitles:(NSArray<NSString *> *)titles {
+    _titles = titles;
     if (_titleBtns.count) {
         return;
     }
     
-    NSInteger count = baseVC.childViewControllers.count;
+    NSInteger count = titles.count;
     BOOL shouldAvg = count < 5;
     if (shouldAvg) {
         kTitleMargin = 0;
@@ -83,13 +84,14 @@ CGFloat kTitleMargin = 25.f;
     UIButton *preBtn = nil;
     
     for (NSInteger i = 0; i < count; i ++) {
-        UIViewController *vc = baseVC.childViewControllers[i];
+        NSString *title = titles[i];
+        
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.tag = i;
-        [btn setTitle:vc.title forState:UIControlStateNormal];
-        [btn setTitleColor:baseVC.titleColorNormal forState:UIControlStateNormal];
+        [btn setTitle:title forState:UIControlStateNormal];
+        [btn setTitleColor:_titleColorNormal forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:15.f];
-        CGFloat btnWidth = shouldAvg ? (SCREEN_WIDTH / count) : [vc.title zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT] + kTitleMargin;
+        CGFloat btnWidth = shouldAvg ? (SCREEN_WIDTH / count) : [title zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT] + kTitleMargin;
         totalBtnWidth += btnWidth;
         
         [_titleScrollView addSubview:btn];
@@ -102,7 +104,6 @@ CGFloat kTitleMargin = 25.f;
     }
     _titleScrollView.contentSize = (CGSize){CGRectGetMaxX(preBtn.frame), 0};
     _titleScrollView.contentInset = UIEdgeInsetsMake(0, kTitleMargin * .5, 0, kTitleMargin * .5);
-    baseVC.contentScrollView.contentSize = (CGSize){count * SCREEN_WIDTH, 0};
     [self _setupIndicatorView];
     [self _titleClick:_titleBtns.firstObject];
 }

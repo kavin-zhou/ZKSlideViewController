@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ZKSlideViewController;
 
 typedef NS_ENUM(NSUInteger, ZKSlideIndicatorStyle) {
     ZKSlideIndicatorStyleNormal,     //!< 正常样式
@@ -24,8 +23,6 @@ typedef NS_ENUM(NSUInteger, ZKSlideIndicatorStyle) {
 @property (nonatomic, assign) NSInteger index;
 
 + (instancetype)segmentView;
-
-- (void)setupTitles:(ZKSlideViewController *)vc;
 
 - (void)didScroll:(UIScrollView *)scrollView;
 

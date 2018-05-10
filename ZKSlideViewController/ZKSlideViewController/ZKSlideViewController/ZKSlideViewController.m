@@ -12,6 +12,7 @@
 @interface ZKSlideViewController () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) ZKSegmentView        *segmentView;
+@property (nonatomic, strong) UIScrollView         *contentScrollView;
 
 @end
 
@@ -37,7 +38,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [_segmentView setupTitles:self];
+    
+    NSArray *titles = [self.childViewControllers valueForKeyPath:@"title"];
+    [_segmentView setTitles:titles];
+    self.contentScrollView.contentSize = (CGSize){titles.count * SCREEN_WIDTH, 0};
     [self.view bringSubviewToFront:_segmentView];
 }
 
