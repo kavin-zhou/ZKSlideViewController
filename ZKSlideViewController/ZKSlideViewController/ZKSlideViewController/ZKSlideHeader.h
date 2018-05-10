@@ -40,4 +40,9 @@
 
 #define HexColor(hexValue)   [UIColor colorWithRed:((float)(((hexValue) & 0xFF0000) >> 16))/255.0 green:((float)(((hexValue) & 0xFF00) >> 8))/255.0 blue:((float)((hexValue) & 0xFF))/255.0 alpha:1]
 
+// Slide 相关
+#define headerImgHeight 200 // 头部图片刚开始显示的高度（实际高度并不是200）
+#define topBarHeight 64  // 导航栏加状态栏高度
+#define switchBarHeight 40
+
 #endif /* ZKSlideHeader_h */

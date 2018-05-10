@@ -15,6 +15,11 @@
 		58314D891E9A34C600851184 /* ZKSlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D881E9A34C600851184 /* ZKSlideViewController.m */; };
 		58314D8D1E9A361C00851184 /* UIView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D8C1E9A361C00851184 /* UIView+Addition.m */; };
 		5849D6B720A3EAEC00C80811 /* ZKSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5849D6B620A3EAEC00C80811 /* ZKSegmentView.m */; };
+		5849D6CC20A4300500C80811 /* ZKHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5849D6CB20A4300500C80811 /* ZKHomePageViewController.m */; };
+		5849D6CF20A4304300C80811 /* ZKFirstSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5849D6CE20A4304300C80811 /* ZKFirstSubViewController.m */; };
+		5849D6D220A4305400C80811 /* ZKSecondSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5849D6D120A4305400C80811 /* ZKSecondSubViewController.m */; };
+		5849D6D520A4306B00C80811 /* ZKThirdSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5849D6D420A4306B00C80811 /* ZKThirdSubViewController.m */; };
+		5849D6D820A4308000C80811 /* ZKBaseSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5849D6D720A4308000C80811 /* ZKBaseSubViewController.m */; };
 		58998EE81FC3CC9200F0A603 /* UIColor+ZK_Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 58998EE71FC3CC9200F0A603 /* UIColor+ZK_Add.m */; };
 		58A0F78D1FC2D2CE00CC6A55 /* NSString+ZK_Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A0F78C1FC2D2CE00CC6A55 /* NSString+ZK_Add.m */; };
 /* End PBXBuildFile section */
@@ -36,6 +41,16 @@
 		58314D8E1E9A365600851184 /* ZKSlideHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKSlideHeader.h; sourceTree = "<group>"; };
 		5849D6B520A3EAEC00C80811 /* ZKSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKSegmentView.h; sourceTree = "<group>"; };
 		5849D6B620A3EAEC00C80811 /* ZKSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKSegmentView.m; sourceTree = "<group>"; };
+		5849D6CA20A4300500C80811 /* ZKHomePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKHomePageViewController.h; sourceTree = "<group>"; };
+		5849D6CB20A4300500C80811 /* ZKHomePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKHomePageViewController.m; sourceTree = "<group>"; };
+		5849D6CD20A4304300C80811 /* ZKFirstSubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKFirstSubViewController.h; sourceTree = "<group>"; };
+		5849D6CE20A4304300C80811 /* ZKFirstSubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKFirstSubViewController.m; sourceTree = "<group>"; };
+		5849D6D020A4305400C80811 /* ZKSecondSubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKSecondSubViewController.h; sourceTree = "<group>"; };
+		5849D6D120A4305400C80811 /* ZKSecondSubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKSecondSubViewController.m; sourceTree = "<group>"; };
+		5849D6D320A4306B00C80811 /* ZKThirdSubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKThirdSubViewController.h; sourceTree = "<group>"; };
+		5849D6D420A4306B00C80811 /* ZKThirdSubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKThirdSubViewController.m; sourceTree = "<group>"; };
+		5849D6D620A4308000C80811 /* ZKBaseSubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKBaseSubViewController.h; sourceTree = "<group>"; };
+		5849D6D720A4308000C80811 /* ZKBaseSubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKBaseSubViewController.m; sourceTree = "<group>"; };
 		58998EE61FC3CC9200F0A603 /* UIColor+ZK_Add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZK_Add.h"; sourceTree = "<group>"; };
 		58998EE71FC3CC9200F0A603 /* UIColor+ZK_Add.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZK_Add.m"; sourceTree = "<group>"; };
 		58A0F78B1FC2D2CE00CC6A55 /* NSString+ZK_Add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZK_Add.h"; sourceTree = "<group>"; };
@@ -76,6 +91,16 @@
 				58314D731E9A341E00851184 /* AppDelegate.m */,
 				58314D751E9A341E00851184 /* ViewController.h */,
 				58314D761E9A341E00851184 /* ViewController.m */,
+				5849D6CA20A4300500C80811 /* ZKHomePageViewController.h */,
+				5849D6CB20A4300500C80811 /* ZKHomePageViewController.m */,
+				5849D6CD20A4304300C80811 /* ZKFirstSubViewController.h */,
+				5849D6CE20A4304300C80811 /* ZKFirstSubViewController.m */,
+				5849D6D020A4305400C80811 /* ZKSecondSubViewController.h */,
+				5849D6D120A4305400C80811 /* ZKSecondSubViewController.m */,
+				5849D6D320A4306B00C80811 /* ZKThirdSubViewController.h */,
+				5849D6D420A4306B00C80811 /* ZKThirdSubViewController.m */,
+				5849D6D620A4308000C80811 /* ZKBaseSubViewController.h */,
+				5849D6D720A4308000C80811 /* ZKBaseSubViewController.m */,
 				58314D861E9A34B000851184 /* ZKSlideViewController */,
 				58314D6F1E9A341E00851184 /* Supporting Files */,
 			);
@@ -190,10 +215,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5849D6D820A4308000C80811 /* ZKBaseSubViewController.m in Sources */,
+				5849D6CC20A4300500C80811 /* ZKHomePageViewController.m in Sources */,
 				58314D771E9A341E00851184 /* ViewController.m in Sources */,
+				5849D6D520A4306B00C80811 /* ZKThirdSubViewController.m in Sources */,
 				58A0F78D1FC2D2CE00CC6A55 /* NSString+ZK_Add.m in Sources */,
+				5849D6D220A4305400C80811 /* ZKSecondSubViewController.m in Sources */,
 				58314D8D1E9A361C00851184 /* UIView+Addition.m in Sources */,
 				58314D741E9A341E00851184 /* AppDelegate.m in Sources */,
+				5849D6CF20A4304300C80811 /* ZKFirstSubViewController.m in Sources */,
 				58314D711E9A341E00851184 /* main.m in Sources */,
 				5849D6B720A3EAEC00C80811 /* ZKSegmentView.m in Sources */,
 				58998EE81FC3CC9200F0A603 /* UIColor+ZK_Add.m in Sources */,
