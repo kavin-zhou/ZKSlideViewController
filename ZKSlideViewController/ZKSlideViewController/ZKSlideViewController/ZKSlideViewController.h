@@ -19,4 +19,8 @@ typedef NS_ENUM(NSUInteger, ZKSlideIndicatorStyle) {
 @property (nonatomic, strong) UIColor *titleColorNormal; //!< 正常颜色
 @property (nonatomic, strong) UIColor *titleColorHighlight; //!< 高亮颜色
 
+@property (nonatomic, strong) UIScrollView         *contentScrollView;
+
+- (void)_titleClick:(UIButton *)btn;
+
 @end

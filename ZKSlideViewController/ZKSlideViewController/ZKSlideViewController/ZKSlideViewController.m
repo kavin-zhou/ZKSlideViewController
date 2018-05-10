@@ -8,21 +8,15 @@
 
 #import "ZKSlideViewController.h"
 #import "ZKSlideHeader.h"
+#import "ZKSegmentView.h"
 
 @interface ZKSlideViewController () <UIScrollViewDelegate>
 
-@property (nonatomic, strong) UIScrollView         *titleScrollView;
-@property (nonatomic, strong) UIScrollView         *contentScrollView;
 @property (nonatomic, strong) UIButton             *selectedBtn;
-@property (nonatomic, strong) UIImageView          *indicatorView;
-@property (nonatomic, strong) NSMutableArray <UIButton *> *titleBtns;
+
+@property (nonatomic, strong) ZKSegmentView        *segmentView;
 
 @end
-
-static const CGFloat kTitleScrollViewHeight = 50.f;
-static CGFloat kTitleMargin = 25.f;
-static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
-static const CGFloat kIndicatorDefaultWidth = 30.f;
 
 @implementation ZKSlideViewController
 
@@ -33,7 +27,6 @@ static const CGFloat kIndicatorDefaultWidth = 30.f;
 }
 
 - (void)_initData {
-    _titleBtns = [NSMutableArray array];
     self.titleColorNormal = [UIColor blackColor];
     self.titleColorHighlight = [UIColor blueColor];
 }
@@ -41,99 +34,28 @@ static const CGFloat kIndicatorDefaultWidth = 30.f;
 - (void)_setup {
     self.automaticallyAdjustsScrollViewInsets = false;
     
-    [self _setupTitleScrollView];
+    [self _setupSegmentView];
     [self _setupContentScrollView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self _setupTitles];
-}
-
-- (void)_setupTitles {
-    if (_titleBtns.count) {
-        return;
-    }
-    
-    NSInteger count = self.childViewControllers.count;
-    BOOL shouldAvg = count < 5;
-    if (shouldAvg) {
-        kTitleMargin = 0;
-    }
-    
-    CGFloat btnHeight = CGRectGetHeight(_titleScrollView.frame);
-    CGFloat totalBtnWidth = 0;
-    UIButton *preBtn = nil;
-    
-    for (NSInteger i = 0; i < count; i ++) {
-        UIViewController *vc = self.childViewControllers[i];
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.tag = i;
-        [btn setTitle:vc.title forState:UIControlStateNormal];
-        [btn setTitleColor:_titleColorNormal forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:15.f];
-        CGFloat btnWidth = shouldAvg ? (SCREEN_WIDTH / count) : [vc.title zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT] + kTitleMargin;
-        totalBtnWidth += btnWidth;
-        
-        [_titleScrollView addSubview:btn];
-        CGFloat btnX = preBtn ? CGRectGetMaxX(preBtn.frame) : 0;
-        
-        btn.frame = CGRectMake(btnX, 0, btnWidth, btnHeight);
-        [btn addTarget:self action:@selector(_titleClick:) forControlEvents:UIControlEventTouchUpInside];
-        [_titleBtns addObject:btn];
-        preBtn = btn;
-    }
-    
-    _titleScrollView.contentSize = (CGSize){CGRectGetMaxX(preBtn.frame), 0};
-    _titleScrollView.contentInset = UIEdgeInsetsMake(0, kTitleMargin * .5, 0, kTitleMargin * .5);
-    _contentScrollView.contentSize = (CGSize){count * SCREEN_WIDTH, 0};
-    [self _setupIndicatorView];
-    [self _titleClick:_titleBtns.firstObject];
-}
-
-- (void)_setupIndicatorView {
-    if (_indicatorView.superview) {
-        return;
-    }
-    UIView *bottomView = [[UIView alloc] initWithFrame:(CGRect){0, kTitleScrollViewHeight - kTitleScrollViewBottomViewHeight, _titleScrollView.contentSize.width, kTitleScrollViewBottomViewHeight}];
-    bottomView.backgroundColor = [UIColor clearColor];
-    [_titleScrollView addSubview:bottomView];
-    
-    _indicatorView = [[UIImageView alloc] init];
-    _indicatorView.us_size = (CGSize){kIndicatorDefaultWidth, kTitleScrollViewBottomViewHeight};
-    _indicatorView.us_centerX = _titleBtns[0].us_centerX;
-    _indicatorView.backgroundColor = [_titleColorHighlight colorWithAlphaComponent:.9];
-    _indicatorView.image = [UIImage imageNamed:@"icon_arrow_down"];
-    _indicatorView.layer.masksToBounds = true;
-    _indicatorView.layer.cornerRadius = kTitleScrollViewBottomViewHeight * .5;
-    [bottomView addSubview:_indicatorView];
+    [_segmentView setupTitles:self];
+    [self.view bringSubviewToFront:_segmentView];
 }
 
 - (void)_selectBtn:(UIButton *)btn {
     [_selectedBtn setTitleColor:_titleColorNormal forState:UIControlStateNormal];
     [btn setTitleColor:_titleColorHighlight forState:UIControlStateNormal];
     
-    [self _centerTitleBtn:btn];
+    [_segmentView _centerTitleBtn:btn];
     _selectedBtn = btn;
     [self _animate:^{
         if (_indicatorStyle == ZKSlideIndicatorStyleNormal) {
-            _indicatorView.us_width = [btn.currentTitle zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT];
+            _segmentView.indicatorView.us_width = [btn.currentTitle zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT];
         }
-        _indicatorView.us_centerX = btn.us_centerX;
+        _segmentView.indicatorView.us_centerX = btn.us_centerX;
     }];
-}
-
-- (void)_centerTitleBtn:(UIButton *)btn {
-    CGFloat offsetX = btn.center.x - SCREEN_WIDTH * .5;
-    
-    if (offsetX < -kTitleMargin * .5) {
-        offsetX = -kTitleMargin * .5;
-    }
-    CGFloat maxOffset = _titleScrollView.contentSize.width - SCREEN_WIDTH + kTitleMargin * .5;
-    if (offsetX > maxOffset) {
-        offsetX = maxOffset;
-    }
-    [_titleScrollView setContentOffset:CGPointMake(offsetX, 0) animated:true];
 }
 
 - (void)_setupSelectedViewController:(NSInteger)index {
@@ -166,28 +88,25 @@ static const CGFloat kIndicatorDefaultWidth = 30.f;
 - (void)_setupContentScrollView {
     _contentScrollView = [[UIScrollView alloc] init];
     [self.view addSubview:_contentScrollView];
-    _contentScrollView.us_top = CGRectGetMaxY(_titleScrollView.frame);
-    _contentScrollView.us_size = (CGSize){SCREEN_WIDTH, SCREEN_HEIGHT - CGRectGetMaxY(_titleScrollView.frame)};
+    _contentScrollView.us_top = CGRectGetMaxY(_segmentView.frame);
+    _contentScrollView.us_size = (CGSize){SCREEN_WIDTH, SCREEN_HEIGHT - CGRectGetMaxY(_segmentView.frame)};
     _contentScrollView.backgroundColor = [UIColor whiteColor];
     _contentScrollView.pagingEnabled = true;
     _contentScrollView.showsHorizontalScrollIndicator = false;
     _contentScrollView.delegate = self;
 }
 
-- (void)_setupTitleScrollView {
-    _titleScrollView = [[UIScrollView alloc] init];
-    [self.view addSubview:_titleScrollView];
-    _titleScrollView.frame = (CGRect){0, 64.f, SCREEN_WIDTH, kTitleScrollViewHeight};
-    _titleScrollView.backgroundColor = [UIColor whiteColor];
-    _titleScrollView.alwaysBounceHorizontal = true;
-    _titleScrollView.showsHorizontalScrollIndicator = false;
+- (void)_setupSegmentView {
+    _segmentView = [ZKSegmentView segmentView];
+    [self.view addSubview:_segmentView];
+    _segmentView.frame = (CGRect){0, 64.f, SCREEN_WIDTH, kTitleScrollViewHeight};
 }
 
 #pragma mark - <UIScrollViewDelegate>
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     NSInteger index = scrollView.contentOffset.x / SCREEN_WIDTH;
-    UIButton *titleBtn = _titleBtns[index];
+    UIButton *titleBtn = _segmentView.titleBtns[index];
     if ([_selectedBtn isEqual:titleBtn]) {
         return;
     }
@@ -197,11 +116,11 @@ static const CGFloat kIndicatorDefaultWidth = 30.f;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     NSInteger leftIndex = MAX(floorf(scrollView.contentOffset.x / SCREEN_WIDTH), 0);
-    NSInteger rightIndex = MIN(_titleBtns.count - 1, leftIndex + 1);
+    NSInteger rightIndex = MIN(_segmentView.titleBtns.count - 1, leftIndex + 1);
     CGFloat slideDistance = scrollView.contentOffset.x / SCREEN_WIDTH;
     
-    UIButton *leftBtn = _titleBtns[leftIndex];
-    UIButton *rightBtn = _titleBtns[rightIndex];
+    UIButton *leftBtn = _segmentView.titleBtns[leftIndex];
+    UIButton *rightBtn = _segmentView.titleBtns[rightIndex];
     if (leftIndex == slideDistance) {
         rightBtn = leftBtn;
     }
@@ -215,17 +134,17 @@ static const CGFloat kIndicatorDefaultWidth = 30.f;
     
     [self _animate:^{
         if (_indicatorStyle == ZKSlideIndicatorStyleNormal) {
-            _indicatorView.us_width = leftBtnWidth + widthDelta * rightScale;
+            _segmentView.indicatorView.us_width = leftBtnWidth + widthDelta * rightScale;
         }
         else if (_indicatorStyle == ZKSlideIndicatorStyleStickiness) {
             if (rightScale <= .5) {
-                _indicatorView.us_width = kIndicatorDefaultWidth + centerDelta * rightScale * 2;
+                _segmentView.indicatorView.us_width = kIndicatorDefaultWidth + centerDelta * rightScale * 2;
             }
             else {
-                _indicatorView.us_width = kIndicatorDefaultWidth + centerDelta - (rightScale-.5) * 2 * centerDelta;
+                _segmentView.indicatorView.us_width = kIndicatorDefaultWidth + centerDelta - (rightScale-.5) * 2 * centerDelta;
             }
         }
-        _indicatorView.us_centerX = leftBtn.us_centerX + centerDelta * rightScale;
+        _segmentView.indicatorView.us_centerX = leftBtn.us_centerX + centerDelta * rightScale;
     }];
     
     CGFloat deltaRateRed = (self.titleColorHighlight.zk_red - self.titleColorNormal.zk_red) * rightScale;

@@ -14,6 +14,7 @@
 		58314D7F1E9A341E00851184 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58314D7D1E9A341E00851184 /* LaunchScreen.storyboard */; };
 		58314D891E9A34C600851184 /* ZKSlideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D881E9A34C600851184 /* ZKSlideViewController.m */; };
 		58314D8D1E9A361C00851184 /* UIView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 58314D8C1E9A361C00851184 /* UIView+Addition.m */; };
+		5849D6B720A3EAEC00C80811 /* ZKSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5849D6B620A3EAEC00C80811 /* ZKSegmentView.m */; };
 		58998EE81FC3CC9200F0A603 /* UIColor+ZK_Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 58998EE71FC3CC9200F0A603 /* UIColor+ZK_Add.m */; };
 		58A0F78D1FC2D2CE00CC6A55 /* NSString+ZK_Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A0F78C1FC2D2CE00CC6A55 /* NSString+ZK_Add.m */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,8 @@
 		58314D8B1E9A361C00851184 /* UIView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Addition.h"; sourceTree = "<group>"; };
 		58314D8C1E9A361C00851184 /* UIView+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addition.m"; sourceTree = "<group>"; };
 		58314D8E1E9A365600851184 /* ZKSlideHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKSlideHeader.h; sourceTree = "<group>"; };
+		5849D6B520A3EAEC00C80811 /* ZKSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKSegmentView.h; sourceTree = "<group>"; };
+		5849D6B620A3EAEC00C80811 /* ZKSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKSegmentView.m; sourceTree = "<group>"; };
 		58998EE61FC3CC9200F0A603 /* UIColor+ZK_Add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZK_Add.h"; sourceTree = "<group>"; };
 		58998EE71FC3CC9200F0A603 /* UIColor+ZK_Add.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZK_Add.m"; sourceTree = "<group>"; };
 		58A0F78B1FC2D2CE00CC6A55 /* NSString+ZK_Add.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+ZK_Add.h"; sourceTree = "<group>"; };
@@ -97,6 +100,8 @@
 				58314D8E1E9A365600851184 /* ZKSlideHeader.h */,
 				58314D871E9A34C600851184 /* ZKSlideViewController.h */,
 				58314D881E9A34C600851184 /* ZKSlideViewController.m */,
+				5849D6B520A3EAEC00C80811 /* ZKSegmentView.h */,
+				5849D6B620A3EAEC00C80811 /* ZKSegmentView.m */,
 			);
 			path = ZKSlideViewController;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 				58314D8D1E9A361C00851184 /* UIView+Addition.m in Sources */,
 				58314D741E9A341E00851184 /* AppDelegate.m in Sources */,
 				58314D711E9A341E00851184 /* main.m in Sources */,
+				5849D6B720A3EAEC00C80811 /* ZKSegmentView.m in Sources */,
 				58998EE81FC3CC9200F0A603 /* UIColor+ZK_Add.m in Sources */,
 				58314D891E9A34C600851184 /* ZKSlideViewController.m in Sources */,
 			);
