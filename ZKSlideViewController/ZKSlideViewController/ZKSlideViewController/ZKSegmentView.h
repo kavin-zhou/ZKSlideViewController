@@ -19,17 +19,15 @@ typedef NS_ENUM(NSUInteger, ZKSlideIndicatorStyle) {
 @property (nonatomic, assign) ZKSlideIndicatorStyle indicatorStyle;
 @property (nonatomic, strong) UIColor *titleColorNormal; //!< 正常颜色
 @property (nonatomic, strong) UIColor *titleColorHighlight; //!< 高亮颜色
-@property (nonatomic, strong) UIScrollView         *titleScrollView;
-@property (nonatomic, strong) UIImageView          *indicatorView;
 
-@property (nonatomic, strong) NSMutableArray <UIButton *> *titleBtns;
+@property (nonatomic, strong) NSArray <NSString *> *titles;
+@property (nonatomic, assign) NSInteger index;
 
 + (instancetype)segmentView;
 
 - (void)setupTitles:(ZKSlideViewController *)vc;
-- (void)_centerTitleBtn:(UIButton *)btn;
-- (void)updateWithTitles:(NSArray <NSString *> *)titles;
-- (void)_selectBtn:(UIButton *)btn;
+
+- (void)didScroll:(UIScrollView *)scrollView;
 
 @property (nonatomic, copy) void (^selectCallback)(NSInteger index);
 

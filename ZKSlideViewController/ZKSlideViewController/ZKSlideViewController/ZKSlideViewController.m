@@ -86,71 +86,15 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     NSInteger index = scrollView.contentOffset.x / SCREEN_WIDTH;
-    UIButton *titleBtn = _segmentView.titleBtns[index];
 //    if ([_selectedBtn isEqual:titleBtn]) {
 //        return;
 //    }
-    [_segmentView _selectBtn:titleBtn];
+    [_segmentView setIndex:index];
     [self _setupSelectedViewController:index];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSInteger leftIndex = MAX(floorf(scrollView.contentOffset.x / SCREEN_WIDTH), 0);
-    NSInteger rightIndex = MIN(_segmentView.titleBtns.count - 1, leftIndex + 1);
-    CGFloat slideDistance = scrollView.contentOffset.x / SCREEN_WIDTH;
-    
-    UIButton *leftBtn = _segmentView.titleBtns[leftIndex];
-    UIButton *rightBtn = _segmentView.titleBtns[rightIndex];
-    if (leftIndex == slideDistance) {
-        rightBtn = leftBtn;
-    }
-    CGFloat rightScale = slideDistance - leftIndex;
-    UIFont *font = rightBtn.titleLabel.font;
-    
-    CGFloat centerDelta = rightBtn.us_centerX - leftBtn.us_centerX;
-    CGFloat rightBtnWidth = [rightBtn.currentTitle zk_stringWidthWithFont:font height:MAXFLOAT];
-    CGFloat leftBtnWidth = [leftBtn.currentTitle zk_stringWidthWithFont:font height:MAXFLOAT];
-    CGFloat widthDelta = rightBtnWidth - leftBtnWidth;
-    
-    [self _animate:^{
-        if (_indicatorStyle == ZKSlideIndicatorStyleNormal) {
-            _segmentView.indicatorView.us_width = leftBtnWidth + widthDelta * rightScale;
-        }
-        else if (_indicatorStyle == ZKSlideIndicatorStyleStickiness) {
-            if (rightScale <= .5) {
-                _segmentView.indicatorView.us_width = kIndicatorDefaultWidth + centerDelta * rightScale * 2;
-            }
-            else {
-                _segmentView.indicatorView.us_width = kIndicatorDefaultWidth + centerDelta - (rightScale-.5) * 2 * centerDelta;
-            }
-        }
-        _segmentView.indicatorView.us_centerX = leftBtn.us_centerX + centerDelta * rightScale;
-    }];
-    
-    CGFloat deltaRateRed = (self.titleColorHighlight.zk_red - self.titleColorNormal.zk_red) * rightScale;
-    CGFloat deltaRateGreen = (self.titleColorHighlight.zk_green - self.titleColorNormal.zk_green) * rightScale;
-    CGFloat deltaRateBlue = (self.titleColorHighlight.zk_blue - self.titleColorNormal.zk_blue) * rightScale;
-    CGFloat deltaRateAlpha = (self.titleColorHighlight.zk_alpha - self.titleColorNormal.zk_alpha) * rightScale;
-    
-    UIColor *rightColor = [UIColor colorWithRed:(_titleColorNormal.zk_red + deltaRateRed)
-                                          green:(_titleColorNormal.zk_green + deltaRateGreen)
-                                           blue:(_titleColorNormal.zk_blue + deltaRateBlue)
-                                          alpha:(_titleColorNormal.zk_alpha + deltaRateAlpha)];
-    UIColor *leftColor = [UIColor colorWithRed:(_titleColorHighlight.zk_red - deltaRateRed)
-                                         green:(_titleColorHighlight.zk_green - deltaRateGreen)
-                                          blue:(_titleColorHighlight.zk_blue - deltaRateBlue)
-                                         alpha:(_titleColorHighlight.zk_alpha - deltaRateAlpha)];
-    [rightBtn setTitleColor:rightColor forState:UIControlStateNormal];
-    [leftBtn setTitleColor:leftColor forState:UIControlStateNormal];
-}
-
-- (void)_animate:(void(^)())animate {
-    if (_indicatorStyle == ZKSlideIndicatorStyleNormal) {
-        [UIView animateWithDuration:.6 delay:0 usingSpringWithDamping:.66 initialSpringVelocity:.66 options:UIViewAnimationOptionCurveEaseInOut animations:animate completion:nil];
-    }
-    else if (_indicatorStyle == ZKSlideIndicatorStyleStickiness) {
-        [UIView animateWithDuration:.25 animations:animate];
-    }
+    [_segmentView didScroll:scrollView];
 }
 
 #pragma mark - Setter
