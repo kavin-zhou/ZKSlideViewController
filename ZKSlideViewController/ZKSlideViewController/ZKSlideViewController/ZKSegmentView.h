@@ -21,15 +21,10 @@ typedef NS_ENUM(NSUInteger, ZKSlideIndicatorStyle) {
 
 @property (nonatomic, strong) NSArray <NSString *> *titles;
 @property (nonatomic, assign) NSInteger index;
-
-+ (instancetype)segmentView;
+@property (nonatomic, copy) void (^selectCallback)(NSInteger index);
 
 - (void)didScroll:(UIScrollView *)scrollView;
 
-@property (nonatomic, copy) void (^selectCallback)(NSInteger index);
-
 @end
 
-static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
-static const CGFloat kTitleScrollViewHeight = 50.f;
-static const CGFloat kIndicatorDefaultWidth = 30.f;
+UIKIT_EXTERN const CGFloat kTitleScrollViewHeight;

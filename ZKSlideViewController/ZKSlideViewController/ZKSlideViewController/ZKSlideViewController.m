@@ -26,7 +26,7 @@
 
 - (void)_initData {
     self.titleColorNormal = [UIColor blackColor];
-    self.titleColorHighlight = [UIColor blueColor];
+    self.titleColorHighlight = [UIColor redColor];
 }
 
 - (void)_setup {
@@ -46,13 +46,10 @@
 }
 
 - (void)_setupSelectedViewController:(NSInteger)index {
-    
     UIViewController *vc = self.childViewControllers[index];
-    
     if (vc.view.superview) {
         return;
     }
-    
     [_contentScrollView addSubview:vc.view];
     
     CGFloat x = SCREEN_WIDTH * index;
@@ -72,7 +69,7 @@
 }
 
 - (void)_setupSegmentView {
-    _segmentView = [ZKSegmentView segmentView];
+    _segmentView = [[ZKSegmentView alloc] init];
     [self.view addSubview:_segmentView];
     _segmentView.frame = (CGRect){0, 64.f, SCREEN_WIDTH, kTitleScrollViewHeight};
     
@@ -90,9 +87,6 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     NSInteger index = scrollView.contentOffset.x / SCREEN_WIDTH;
-//    if ([_selectedBtn isEqual:titleBtn]) {
-//        return;
-//    }
     [_segmentView setIndex:index];
     [self _setupSelectedViewController:index];
 }

@@ -21,15 +21,20 @@
 @end
 
 CGFloat kTitleMargin = 25.f;
+static const CGFloat kTitleScrollViewBottomViewHeight = 3.f;
+static const CGFloat kIndicatorDefaultWidth = 30.f;
 
 @implementation ZKSegmentView
 
-+ (instancetype)segmentView {
-    return [[self alloc] init];
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self setup];
+    }
+    return self;
 }
 
-- (instancetype)init {
-    if (self = [super init]) {
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
         [self setup];
     }
     return self;
@@ -67,47 +72,6 @@ CGFloat kTitleMargin = 25.f;
     [bottomView addSubview:_indicatorView];
 }
 
-- (void)setTitles:(NSArray<NSString *> *)titles {
-    _titles = titles;
-    if (_titleBtns.count) {
-        return;
-    }
-    
-    NSInteger count = titles.count;
-    BOOL shouldAvg = count < 5;
-    if (shouldAvg) {
-        kTitleMargin = 0;
-    }
-    
-    CGFloat btnHeight = CGRectGetHeight(_titleScrollView.frame);
-    CGFloat totalBtnWidth = 0;
-    UIButton *preBtn = nil;
-    
-    for (NSInteger i = 0; i < count; i ++) {
-        NSString *title = titles[i];
-        
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.tag = i;
-        [btn setTitle:title forState:UIControlStateNormal];
-        [btn setTitleColor:_titleColorNormal forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont systemFontOfSize:15.f];
-        CGFloat btnWidth = shouldAvg ? (SCREEN_WIDTH / count) : [title zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT] + kTitleMargin;
-        totalBtnWidth += btnWidth;
-        
-        [_titleScrollView addSubview:btn];
-        CGFloat btnX = preBtn ? CGRectGetMaxX(preBtn.frame) : 0;
-        
-        btn.frame = CGRectMake(btnX, 0, btnWidth, btnHeight);
-        [btn addTarget:self action:@selector(_titleClick:) forControlEvents:UIControlEventTouchUpInside];
-        [_titleBtns addObject:btn];
-        preBtn = btn;
-    }
-    _titleScrollView.contentSize = (CGSize){CGRectGetMaxX(preBtn.frame), 0};
-    _titleScrollView.contentInset = UIEdgeInsetsMake(0, kTitleMargin * .5, 0, kTitleMargin * .5);
-    [self _setupIndicatorView];
-    [self _titleClick:_titleBtns.firstObject];
-}
-
 - (void)_titleClick:(UIButton *)btn {
     [self _selectBtn:btn];
     
@@ -126,11 +90,6 @@ CGFloat kTitleMargin = 25.f;
         offsetX = maxOffset;
     }
     [_titleScrollView setContentOffset:CGPointMake(offsetX, 0) animated:true];
-}
-
-- (void)setIndex:(NSInteger)index {
-    _index = index;
-    [self _selectBtn:_titleBtns[index]];
 }
 
 - (void)_selectBtn:(UIButton *)btn {
@@ -206,4 +165,57 @@ CGFloat kTitleMargin = 25.f;
     }
 }
 
+#pragma mark - Setter
+
+- (void)setIndex:(NSInteger)index {
+    if (_index == index) {
+        return;
+    }
+    _index = index;
+    [self _selectBtn:_titleBtns[index]];
+}
+
+- (void)setTitles:(NSArray<NSString *> *)titles {
+    _titles = titles;
+    if (_titleBtns.count) {
+        return;
+    }
+    
+    NSInteger count = titles.count;
+    BOOL shouldAvg = count < 5;
+    if (shouldAvg) {
+        kTitleMargin = 0;
+    }
+    
+    CGFloat btnHeight = CGRectGetHeight(_titleScrollView.frame);
+    CGFloat totalBtnWidth = 0;
+    UIButton *preBtn = nil;
+    
+    for (NSInteger i = 0; i < count; i ++) {
+        NSString *title = titles[i];
+        
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.tag = i;
+        [btn setTitle:title forState:UIControlStateNormal];
+        [btn setTitleColor:_titleColorNormal forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:15.f];
+        CGFloat btnWidth = shouldAvg ? (SCREEN_WIDTH / count) : [title zk_stringWidthWithFont:btn.titleLabel.font height:MAXFLOAT] + kTitleMargin;
+        totalBtnWidth += btnWidth;
+        
+        [_titleScrollView addSubview:btn];
+        CGFloat btnX = preBtn ? CGRectGetMaxX(preBtn.frame) : 0;
+        
+        btn.frame = CGRectMake(btnX, 0, btnWidth, btnHeight);
+        [btn addTarget:self action:@selector(_titleClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_titleBtns addObject:btn];
+        preBtn = btn;
+    }
+    _titleScrollView.contentSize = (CGSize){CGRectGetMaxX(preBtn.frame), 0};
+    _titleScrollView.contentInset = UIEdgeInsetsMake(0, kTitleMargin * .5, 0, kTitleMargin * .5);
+    [self _setupIndicatorView];
+    [self _titleClick:_titleBtns.firstObject];
+}
+
 @end
+
+const CGFloat kTitleScrollViewHeight = 50.f;
