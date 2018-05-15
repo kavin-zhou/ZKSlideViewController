@@ -24,6 +24,17 @@
     [self _setup];
 }
 
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
+    _segmentView.frame = (CGRect){ 0, self.topInset, SCREEN_WIDTH, kTitleScrollViewHeight };
+    _contentScrollView.frame = (CGRect) {
+        0,
+        CGRectGetMaxY(_segmentView.frame),
+        SCREEN_WIDTH,
+        SCREEN_HEIGHT - CGRectGetMaxY(_segmentView.frame) };
+}
+
 - (void)_initData {
     self.titleColorNormal = [UIColor blackColor];
     self.titleColorHighlight = [UIColor redColor];
@@ -60,8 +71,6 @@
 - (void)_setupContentScrollView {
     _contentScrollView = [[UIScrollView alloc] init];
     [self.view addSubview:_contentScrollView];
-    _contentScrollView.us_top = CGRectGetMaxY(_segmentView.frame);
-    _contentScrollView.us_size = (CGSize){SCREEN_WIDTH, SCREEN_HEIGHT - CGRectGetMaxY(_segmentView.frame)};
     _contentScrollView.backgroundColor = [UIColor whiteColor];
     _contentScrollView.pagingEnabled = true;
     _contentScrollView.showsHorizontalScrollIndicator = false;
@@ -71,7 +80,6 @@
 - (void)_setupSegmentView {
     _segmentView = [[ZKSegmentView alloc] init];
     [self.view addSubview:_segmentView];
-    _segmentView.frame = (CGRect){0, 64.f, SCREEN_WIDTH, kTitleScrollViewHeight};
     
     __weak typeof(self) weakSelf = self;
     [_segmentView setSelectCallback:^(NSInteger index) {
